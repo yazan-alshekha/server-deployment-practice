@@ -31,7 +31,7 @@ app.post('/bad', (req, res) => {
 })
 
 
-
+// middlewares
 app.use(errorHandler);
 app.use('*', notFoundHandler);
 
