@@ -1,6 +1,6 @@
 'use strict';
 
-const server=require('./server');
+const server=require('./src/server');
 
 //to allow this file reading from ".env" file 
 require('dotenv').config();

@@ -1,10 +1,21 @@
 'use strict';
 
 const express = require('express');
-const errorHandler = require('./handlers/500');
-const notFoundHandler = require('./handlers/404');
-
+const errorHandler = require('./handlers/500.js');
+const notFoundHandler = require('./handlers/404.js');
+const validator=require('./middleware/validator.js');
+const logger=require('./middleware/logger.js');
 const app = express();
+
+
+
+// 1- Built-in Express middlewares - Application--level
+app.use(express.json());
+// app.use(cors());
+
+
+// 2- Application--level/Global custome middleware
+app.use(logger);
 
 
 function start(port) {
@@ -29,6 +40,14 @@ app.post('/bad', (req, res) => {
     number.forEach(x => console.log(x));
     res.send('this Bad Route ');
 })
+
+//        /person?name="anyName" 
+app.get('/person',validator,(req,res)=>{
+    res.status(200).json({
+        name: req.query.name,
+    })
+
+});
 
 
 // middlewares
