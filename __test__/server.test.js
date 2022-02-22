@@ -1,5 +1,5 @@
 'use strict';
-const server=require('../server');
+const server=require('../src/server');
 //dont forget to install supertest on your shell
 
 //create fake server for testing 
@@ -29,4 +29,8 @@ describe('my API Server',()=>{
     });
 
 
-})
+});
+
+
+
+
