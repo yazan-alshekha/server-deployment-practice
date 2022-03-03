@@ -22,7 +22,7 @@ function test(req,res){
 // http://localhost:3030/clothes (get method)
 async function getClothes(req, res) {
     let record = await clothes.findAll();
-    res.status(201).json(record)
+    res.status(200).json(record)
 }
 
 // http://localhost:3030/clothes/2 (get method)
@@ -30,7 +30,7 @@ async function getOneClothes(req,res){
     let foodId =  req.params.id ;
     // console.log('param',foodId);
     let record =await clothes.findOne({where:{ id : foodId }});
-    res.status(201).json(record);
+    res.status(200).json(record);
     
 }
 
@@ -53,14 +53,14 @@ async function createClothes(req,res){
 async function editClothes(req,res){
     let clothesID =req.params.id;
     let record= await  clothes.update( req.body , {where:{id : clothesID}} );
-    res.status(201).json(record);
+    res.status(200).json(record);
 }
 
 // http://localhost:3030/deleteclothes/2 (delete method)
 async function deleteClothes(req,res){
     let clothesID =  req.params.id;
     let record=await clothes.destroy({where:{ id: clothesID }});
-    res.status(201).json(record);
+    res.status(200).json(record);
 }
 
 module.exports = router ;
