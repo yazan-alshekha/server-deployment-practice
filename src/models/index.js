@@ -7,6 +7,8 @@ const clothes = require('./clothes.model.js');
 const food = require('./food.model.js');
 require('dotenv').config();// to read from the .env file 
 
+const collection = require('./lib/collection');
+
 // const POSTGRESS_URL=process.env.DATABASE_URL;
 
 //prepare the connection
@@ -32,10 +34,15 @@ let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
 // let sequelize = new Sequelize(POSTGRESS_URL);
 let sequelize = new Sequelize(POSTGRESS_URL,sequelizeOptions);
 
+let foodModel = food( sequelize , DataTypes);
+let clotherModel = clothes( sequelize , DataTypes);
+
+let foodCollection = new collection(foodModel);
+let ClotherModel = new collection(clotherModel);
 
 module.exports = {
     db : sequelize,//for real connection and will use it in index.js
-    food : food( sequelize , DataTypes),// for creating the table and will use it in our routes
-    clothes : clothes( sequelize , DataTypes),// for creating the table and will use it in our routes
+    food : foodCollection,// for creating the table and will use it in our routes
+    clothes : ClotherModel,// for creating the table and will use it in our routes
 }
 
